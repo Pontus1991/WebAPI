@@ -20,14 +20,6 @@ namespace Projekt1.Models
         public Inventory Inventory { get; set; }
         public int? InventoryId { get; set; }
 
-        // Nav prop
-        //public User User { get; set; }
-        //public int? UserId { get; set; }
-
-        //public User User { get; set; }
-
-        //public int? UserId { get; set; }
-
         public List<Customer> Customers { get; set; }
 
         public int? CustomerId { get; set; }
