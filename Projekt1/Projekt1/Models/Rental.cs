@@ -20,10 +20,6 @@ namespace Projekt1.Models
         public Inventory Inventory { get; set; }
         public int? InventoryId { get; set; }
 
-
-        //But what about the other way around? We have an RPG character and want
-        //to select the corresponding user? To be able to do that, we add a User
-        //property to the Character model, as well.
         // Nav prop
         //public User User { get; set; }
         //public int? UserId { get; set; }
