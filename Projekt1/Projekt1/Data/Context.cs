@@ -20,9 +20,6 @@ namespace Projekt1.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Book_Author> Book_Authors { get; set; }
-        public DbSet<Rental_Customer> Rental_Customers { get; set; }
-
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) // Måste säga åt entity Framework hur vi vill att denna many-tomany-ralation ska vara. 
         {
@@ -44,18 +41,6 @@ namespace Projekt1.Data
             .Property(l => l.RentalDate)
             .HasDefaultValueSql("GETDATE()");
 
-            modelBuilder.Entity<Rental_Customer>()
-               .HasKey(rc => new { rc.RentalId, rc.CustomerId });
-
-            modelBuilder.Entity<Rental_Customer>()
-                .HasOne(rc => rc.Rental)
-                .WithMany(r => r.Rental_Customers)
-                .HasForeignKey(rc => rc.RentalId);
-
-            modelBuilder.Entity<Rental_Customer>()
-                .HasOne(rc => rc.Customer)
-                .WithMany(c => c.Rental_Customers)
-                .HasForeignKey(rc => rc.CustomerId);
 
             ///////////////////////////////////////////////   Vårra rentals är en kopplingstabell
             ///modelBuilder.Entity<Rental>()
