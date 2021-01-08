@@ -19,5 +19,6 @@ namespace Projekt1.Models
         [Required]
         public int LibraryCard { get; set; }
 
+        public List<Rental_Customer> Rental_Customers { get; set; }
     }
 }

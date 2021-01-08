@@ -20,9 +20,7 @@ namespace Projekt1.Models
         public Inventory Inventory { get; set; }
         public int? InventoryId { get; set; }
 
-        public List<Customer> Customers { get; set; }
-
-        public int? CustomerId { get; set; }
+        public List<Rental_Customer> Rental_Customers { get; set; }
 
         public bool Returned
         {
