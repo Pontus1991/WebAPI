@@ -11,12 +11,19 @@ namespace Projekt1.Models
         public int CustomerId { get; set; }
 
         [Required]
-        public string CustomerFirstName { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
-        public string CustomerLastName { get; set; }
+        public string LastName { get; set; }
+
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        public string EmailAddress { get; set; }
 
         [Required]
         public int LibraryCard { get; set; }
+
     }
 }

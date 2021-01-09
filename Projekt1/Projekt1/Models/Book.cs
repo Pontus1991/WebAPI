@@ -9,20 +9,21 @@ namespace Projekt1.Models
 {
     public class Book
     {
+        [Key]
         public int BookId { get; set; }
 
-        //[Required] // Översätter det till SQL när vi gör våra migereringar. 
-        //[MaxLength(40), MinLength(4)]
+        [Required] // Översätter det till SQL när vi gör våra migereringar. 
+        [MaxLength(40), MinLength(4)]
         public string Title { get; set; }
 
-        //[Column(TypeName = "char(4)")] // Måste vara exakt 4 siffror.
+        [Column(TypeName = "char(4)")] // Måste vara exakt 4 siffror.
         public int ReleaseYear { get; set; }
 
-        //[Required]
+        [Required]
         public long ISBN { get; set; }
 
         public Rating Rating { get; set; }
-
+        
         public int? RatingId { get; set; }
 
 
@@ -30,6 +31,8 @@ namespace Projekt1.Models
 
 
         public Inventory Inventory { get; set; }
+        public int? InventoryId { get; set; }
+
 
     }
 }

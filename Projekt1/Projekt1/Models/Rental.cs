@@ -1,6 +1,7 @@
 ﻿using Projekt1.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace Projekt1.Models
 {
     public class Rental
     {
+        [Key]
         public int RentalId { get; set; }
 
         public DateTime? RentalDate { get; set; } //Även fast det är nullable här, så sköter controllern inmatningen automatiskt
@@ -18,15 +20,19 @@ namespace Projekt1.Models
 
         // Nav prop
         public Inventory Inventory { get; set; }
-        public int? InventoryId { get; set; }
+        
+        public Customer Customer { get; set; }
+        public int? CustomerId { get; set; }
 
-
-        public bool Returned
+        public bool Returned  
         {
             get
             {
-                return ReturnDate == null ? false : true;
+                return ReturnDate == null ? false : true; 
             }
         }
+
+
+
     }
 }

@@ -27,8 +27,8 @@ namespace Projekt1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddControllersWithViews()
+
                 .AddNewtonsoftJson(x => {
                     x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                     x.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
@@ -49,7 +49,10 @@ namespace Projekt1
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

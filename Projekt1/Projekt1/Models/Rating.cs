@@ -12,7 +12,7 @@ namespace Projekt1.Models
         public List<Book> Books { get; set; }
 
         [Range(0, 5, ErrorMessage = "Ange ett tal mellan 0 och 5")]
-        public int Ratings { get; set; }
+        public int Ratings { get; set; } 
 
     }
 }
