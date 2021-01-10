@@ -26,13 +26,10 @@ namespace Projekt1.Models
         
         public int? RatingId { get; set; }
 
-
         public List<Book_Author> Book_Authors { get; set; }
 
-
-        public Inventory Inventory { get; set; }
-        public int? InventoryId { get; set; }
-
+        //public Inventory Inventory { get; set; }
+        //public int? InventoryId { get; set; }
 
     }
 }

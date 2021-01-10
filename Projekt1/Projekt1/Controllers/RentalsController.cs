@@ -26,6 +26,7 @@ namespace Projekt1.Controllers
         public async Task<ActionResult<IEnumerable<Rental>>> GetRentals()
         {
             return await _context.Rentals.ToListAsync();
+
         }
 
         // GET: api/Rentals/5

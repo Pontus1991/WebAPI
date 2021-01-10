@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\projekt1\\Projekt1.csproj": {}
+    "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\Projekt1\\Projekt1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\projekt1\\Projekt1.csproj": {
+    "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\Projekt1\\Projekt1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\projekt1\\Projekt1.csproj",
+        "projectUniqueName": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\Projekt1\\Projekt1.csproj",
         "projectName": "Projekt1",
-        "projectPath": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\projekt1\\Projekt1.csproj",
+        "projectPath": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\Projekt1\\Projekt1.csproj",
         "packagesPath": "C:\\Users\\Pontu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\projekt1\\obj\\",
+        "outputPath": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\Projekt1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pontu\\AppData\\Roaming\\NuGet\\NuGet.Config",

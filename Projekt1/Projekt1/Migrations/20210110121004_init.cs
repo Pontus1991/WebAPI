@@ -52,48 +52,6 @@ namespace Projekt1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rentals",
-                columns: table => new
-                {
-                    RentalId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RentalDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
-                    ReturnDate = table.Column<DateTime>(nullable: true),
-                    Rented = table.Column<bool>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rentals", x => x.RentalId);
-                    table.ForeignKey(
-                        name: "FK_Rentals_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Inventories",
-                columns: table => new
-                {
-                    InventoryId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId = table.Column<int>(nullable: true),
-                    RentalId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Inventories", x => x.InventoryId);
-                    table.ForeignKey(
-                        name: "FK_Inventories_Rentals_RentalId",
-                        column: x => x.RentalId,
-                        principalTable: "Rentals",
-                        principalColumn: "RentalId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Books",
                 columns: table => new
                 {
@@ -102,18 +60,11 @@ namespace Projekt1.Migrations
                     Title = table.Column<string>(maxLength: 40, nullable: false),
                     ReleaseYear = table.Column<string>(type: "char(4)", nullable: false),
                     ISBN = table.Column<long>(nullable: false),
-                    RatingId = table.Column<int>(nullable: true),
-                    InventoryId = table.Column<int>(nullable: true)
+                    RatingId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.BookId);
-                    table.ForeignKey(
-                        name: "FK_Books_Inventories_InventoryId",
-                        column: x => x.InventoryId,
-                        principalTable: "Inventories",
-                        principalColumn: "InventoryId",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Books_Ratings_RatingId",
                         column: x => x.RatingId,
@@ -146,15 +97,58 @@ namespace Projekt1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Inventories",
+                columns: table => new
+                {
+                    InventoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inventories", x => x.InventoryId);
+                    table.ForeignKey(
+                        name: "FK_Inventories_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "BookId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rentals",
+                columns: table => new
+                {
+                    RentalId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RentalDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
+                    ReturnDate = table.Column<DateTime>(nullable: true),
+                    Rented = table.Column<bool>(nullable: false),
+                    InventoryId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rentals", x => x.RentalId);
+                    table.ForeignKey(
+                        name: "FK_Rentals_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Rentals_Inventories_InventoryId",
+                        column: x => x.InventoryId,
+                        principalTable: "Inventories",
+                        principalColumn: "InventoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Book_Authors_AuthorId",
                 table: "Book_Authors",
                 column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Books_InventoryId",
-                table: "Books",
-                column: "InventoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_RatingId",
@@ -162,16 +156,19 @@ namespace Projekt1.Migrations
                 column: "RatingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Inventories_RentalId",
+                name: "IX_Inventories_BookId",
                 table: "Inventories",
-                column: "RentalId",
-                unique: true,
-                filter: "[RentalId] IS NOT NULL");
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rentals_CustomerId",
                 table: "Rentals",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rentals_InventoryId",
+                table: "Rentals",
+                column: "InventoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -180,22 +177,22 @@ namespace Projekt1.Migrations
                 name: "Book_Authors");
 
             migrationBuilder.DropTable(
+                name: "Rentals");
+
+            migrationBuilder.DropTable(
                 name: "Authors");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Inventories");
 
             migrationBuilder.DropTable(
+                name: "Books");
+
+            migrationBuilder.DropTable(
                 name: "Ratings");
-
-            migrationBuilder.DropTable(
-                name: "Rentals");
-
-            migrationBuilder.DropTable(
-                name: "Customers");
         }
     }
 }

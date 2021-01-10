@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R4O9eGB8Jfl1kEBtfWnzudh5atXwO6auN3Btuffg/+AaV8xxluQ+J55SKsJTXNU7CJcaZ7+c7oiOENRopQLm0g==",
+  "dgSpecHash": "FSPZht7459/0A7N12QqVeJjIQFcKnvh4kjUWtfMAukHoITE57hz8V0+9fFeb1qv0+SJ/pgP5PeFs4oFwLytUGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\projekt1\\Projekt1.csproj",
+  "projectFilePath": "C:\\Users\\Pontu\\source\\repos\\WebAPI\\Projekt1\\Projekt1\\Projekt1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pontu\\.nuget\\packages\\bootstrap\\4.0.0\\bootstrap.4.0.0.nupkg.sha512",
     "C:\\Users\\Pontu\\.nuget\\packages\\jquery\\3.0.0\\jquery.3.0.0.nupkg.sha512",

@@ -22,7 +22,12 @@ namespace Projekt1.Controllers
         // GET: LateRentals
         public async Task<IActionResult> Index()
         {
-            var context = _context.Rentals.Where(r => r.ReturnDate > DateTime.Now).Include(r => r.Inventory); // Ändra till mindre när jag lagt till 3 grejer i psotman
+            var context = _context.Rentals
+                //.Include(r => r.Customer)
+                //.Include(r => r.Inventory)
+                //.ThenInclude(r => r.Books)
+                .Where(r => r.ReturnDate > DateTime.Now).Include(r => r.Inventory); // Ändra till mindre när jag lagt till 3 grejer i psotman
+            
             return View(await context.ToListAsync());
         }
 

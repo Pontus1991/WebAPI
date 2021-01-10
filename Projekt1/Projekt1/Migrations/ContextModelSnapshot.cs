@@ -47,9 +47,6 @@ namespace Projekt1.Migrations
                     b.Property<long>("ISBN")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("InventoryId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RatingId")
                         .HasColumnType("int");
 
@@ -63,8 +60,6 @@ namespace Projekt1.Migrations
                         .HasMaxLength(40);
 
                     b.HasKey("BookId");
-
-                    b.HasIndex("InventoryId");
 
                     b.HasIndex("RatingId");
 
@@ -127,14 +122,9 @@ namespace Projekt1.Migrations
                     b.Property<int?>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RentalId")
-                        .HasColumnType("int");
-
                     b.HasKey("InventoryId");
 
-                    b.HasIndex("RentalId")
-                        .IsUnique()
-                        .HasFilter("[RentalId] IS NOT NULL");
+                    b.HasIndex("BookId");
 
                     b.ToTable("Inventories");
                 });
@@ -161,7 +151,10 @@ namespace Projekt1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InventoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("RentalDate")
@@ -179,15 +172,13 @@ namespace Projekt1.Migrations
 
                     b.HasIndex("CustomerId");
 
+                    b.HasIndex("InventoryId");
+
                     b.ToTable("Rentals");
                 });
 
             modelBuilder.Entity("Projekt1.Models.Book", b =>
                 {
-                    b.HasOne("Projekt1.Models.Inventory", "Inventory")
-                        .WithMany("Books")
-                        .HasForeignKey("InventoryId");
-
                     b.HasOne("Projekt1.Models.Rating", "Rating")
                         .WithMany("Books")
                         .HasForeignKey("RatingId");
@@ -210,16 +201,24 @@ namespace Projekt1.Migrations
 
             modelBuilder.Entity("Projekt1.Models.Inventory", b =>
                 {
-                    b.HasOne("Projekt1.Models.Rental", "Rental")
-                        .WithOne("Inventory")
-                        .HasForeignKey("Projekt1.Models.Inventory", "RentalId");
+                    b.HasOne("Projekt1.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId");
                 });
 
             modelBuilder.Entity("Projekt1.Models.Rental", b =>
                 {
                     b.HasOne("Projekt1.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projekt1.Models.Inventory", "Inventory")
+                        .WithMany("Rentals")
+                        .HasForeignKey("InventoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

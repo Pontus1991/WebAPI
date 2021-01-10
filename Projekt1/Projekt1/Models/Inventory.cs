@@ -15,12 +15,11 @@ namespace Projekt1.Models
 
         //public Book Book { get; set; } // nav prop
 
-        public List<Book> Books { get; set; }
+        public Book Book { get; set; }
+        // public List<Book> Books { get; set; }
 
         public int? BookId { get; set; }
 
-        public Rental Rental { get; set; }
-
-        public int? RentalId { get; set; }
+        public List<Rental> Rentals { get; set; }
     }
 }

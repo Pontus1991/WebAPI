@@ -20,9 +20,10 @@ namespace Projekt1.Models
 
         // Nav prop
         public Inventory Inventory { get; set; }
-        
+        public int InventoryId { get; set; }
+
         public Customer Customer { get; set; }
-        public int? CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         public bool Returned  
         {
