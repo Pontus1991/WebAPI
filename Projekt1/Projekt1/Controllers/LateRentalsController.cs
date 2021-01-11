@@ -26,7 +26,7 @@ namespace Projekt1.Controllers
                 .Include(r => r.Customer)
                 .Include(r => r.Inventory)
                 .ThenInclude(r => r.Book)
-                .Where(r => r.ReturnDate < DateTime.Now).Include(r => r.Inventory); 
+                .Where(r => r.ReturnDate > DateTime.Now).Include(r => r.Inventory); 
             
             return View(await context.ToListAsync());
         }

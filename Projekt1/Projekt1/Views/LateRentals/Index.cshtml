@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Projekt1.Models.Rental>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model IEnumerable<Projekt1.Models.Rental>
 
 
 @{
@@ -95,21 +97,15 @@
                                 @item.ReturnDate
                             </td>
                             <td>
-                                @*<input type="checkbox" />
-                            <a asp-action="Delete" asp-route-id="@item.RentalId">Inlämnad</a>
-                            <i class="far fa-trash-alt"></i>*@
-                                <form action="/action_page.php">
-                                    <input type="checkbox">
-                                    <label for="Rentalid">Tillbakalämnad</label><br>
-                                </form>
+                                <a asp-action="Delete" asp-route-id="@item.RentalId">Ta Bort Från Lista (Bok inlämnad)</a>
+                                <i class="far fa-trash-alt"></i>
                             </td>
+
                         </tr>
                     }
                 </tbody>
             </table>
             <button class="btn btn-primary" type="button">Spara</button>
-            <input class="btn btn-danger" type="submit" value="Delete" />
-            <input type="submit" asp-action="DeleteConfirmed" method="post" value="Submit">
         </div>
     </div>
 
