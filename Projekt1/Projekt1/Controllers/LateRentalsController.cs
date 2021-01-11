@@ -23,10 +23,10 @@ namespace Projekt1.Controllers
         public async Task<IActionResult> Index()
         {
             var context = _context.Rentals
-                //.Include(r => r.Customer)
-                //.Include(r => r.Inventory)
-                //.ThenInclude(r => r.Books)
-                .Where(r => r.ReturnDate > DateTime.Now).Include(r => r.Inventory); // Ändra till mindre när jag lagt till 3 grejer i psotman
+                .Include(r => r.Customer)
+                .Include(r => r.Inventory)
+                .ThenInclude(r => r.Book)
+                .Where(r => r.ReturnDate < DateTime.Now).Include(r => r.Inventory); 
             
             return View(await context.ToListAsync());
         }

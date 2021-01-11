@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Projekt1.Models.Rental>
 
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,59 +9,109 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
-<h1 class="text-danger">CentrumBiblioteket</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentalDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReturnDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rented)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Inventory.InventoryId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayNameFor(modelItem => item.Customer.FirstName)
-            </td>
-            <td>
-                @Html.DisplayNameFor(modelItem => item.Inventory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rented)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inventory.InventoryId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RentalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RentalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RentalId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body>
+    <div class="row" style="height: 150px;">
+        <h1 style="font-size: 60px;margin-top: 32px;margin-left: 450px;">CentrumBiblioteket</h1>
+    </div>
+
+    <div class="row">
+        <div class="col" style="max-width: 200px;">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span>Sök...</span>
+                </li>
+                <li class="list-group-item">
+                    <span>Startsida</span>
+                </li>
+                <li class="list-group-item">
+                    <span>Artiklar</span>
+                </li>
+                <li class="list-group-item">
+                    <span>Uppföljning/Statistik</span>
+                </li>
+                <li class="list-group-item">
+                    <span>Böcker som är utlånade</span>
+                </li>
+                <li class="list-group-item">
+                    <span>Försenade Utlån</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Förnamn
+                        </th>
+                        <th>
+                            Efternamn
+                        </th>
+                        <th>
+                            Telefonnummer
+                        </th>
+                        <th>
+                            Epostadress
+                        </th>
+                        <th>
+                            Boktitel
+                        </th>
+                        <th>
+                            Utlåningssdatum
+                        </th>
+                        <th>
+                            Inlämningsdatum
+                        </th>
+                        <th>
+                            Bok tillbakalämnad
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Customer.FirstName
+                            </td>
+                            <td>
+                                @item.Customer.LastName
+                            </td>
+                            <td>
+                                @item.Customer.PhoneNumber
+                            </td>
+                            <td>
+                                @item.Customer.EmailAddress
+                            </td>
+                            <td>
+                                @item.Inventory.Book.Title
+                            </td>
+                            <td>
+                                @item.RentalDate
+                            </td>
+                            <td>
+                                @item.ReturnDate
+                            </td>
+                            <td>
+                                @*<input type="checkbox" />
+                            <a asp-action="Delete" asp-route-id="@item.RentalId">Inlämnad</a>
+                            <i class="far fa-trash-alt"></i>*@
+                                <form action="/action_page.php">
+                                    <input type="checkbox">
+                                    <label for="Rentalid">Tillbakalämnad</label><br>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button class="btn btn-primary" type="button">Spara</button>
+            <input class="btn btn-danger" type="submit" value="Delete" />
+            <input type="submit" asp-action="DeleteConfirmed" method="post" value="Submit">
+        </div>
+    </div>
+
+
+</body>
