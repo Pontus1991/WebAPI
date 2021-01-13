@@ -1,9 +1,5 @@
 # CentrumBiblioteket Application
 
-#### 
-
-Clone this repo...Lägg in gitlänk
-
 #### Why you should use this application
 
 This application is made for Centrumbiblioteket and is going to serve as a tool to manage bookrentals. 
